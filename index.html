@@ -50,7 +50,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -72,18 +71,16 @@
 </head>
 <body class="flex flex-col min-h-screen relative overflow-x-hidden">
 
-    <!-- PHÁT NHẠC NỀN MP3 TỰ ĐỘNG -->
+    <!-- PHÁT NHẠC NỀN MP3 -->
     <audio id="bgMusic" loop></audio>
 
     <!-- SPLASH SCREEN OVERLAY -->
     <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-700">
         <div class="relative flex flex-col items-center">
-            <!-- Radiant Outer Ring -->
             <div class="w-52 h-52 rounded-full border border-gold-500/30 flex items-center justify-center animate-spin" style="animation-duration: 10s;">
                 <div class="w-44 h-44 rounded-full border border-dashed border-gold-400/40"></div>
             </div>
             
-            <!-- Metallic Logo Container -->
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="relative z-10 mb-5 p-1 rounded-3xl bg-gradient-to-br from-gold-300 via-gold-500 to-gold-800 shadow-2xl shadow-gold-500/20">
                     <div class="bg-black p-1.5 rounded-[22px] flex items-center justify-center">
@@ -92,7 +89,6 @@
                 </div>
             </div>
             
-            <!-- Title & Status -->
             <h2 class="font-orbitron text-2xl font-black tracking-widest gold-gradient-text uppercase mt-2">IZC MODS</h2>
             <div class="flex items-center space-x-2 mt-2">
                 <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
@@ -112,95 +108,95 @@
                 </div>
                 <div>
                     <h1 class="font-orbitron text-lg font-black tracking-wider gold-gradient-text">IZC MODS</h1>
-                    <p class="text-[10px] text-gold-300/70 tracking-widest uppercase font-semibold">ADR & iOS</p>
+                    <p class="text-[10px] text-gold-300/70 tracking-widest uppercase font-semibold">ADR & IOS</p>
                 </div>
             </div>
 
-            <!-- Nút bật/tắt nhạc & Nút mở Admin -->
             <div class="flex items-center space-x-2">
                 <button onclick="toggleMusic()" id="musicToggleBtn" class="w-10 h-10 rounded-xl bg-gold-500/15 hover:bg-gold-500/30 border border-gold-500/50 text-gold-300 flex items-center justify-center transition-all cursor-pointer shadow-md" title="Bật/Tắt nhạc nền">
                     <i class="fa-solid fa-music text-xs" id="musicIcon"></i>
                 </button>
                 <button onclick="checkAdminAccess()" class="px-3.5 py-2 rounded-xl bg-gold-500/15 hover:bg-gold-500/30 border border-gold-500/50 text-gold-300 text-xs font-bold transition-all flex items-center space-x-2 shadow-md cursor-pointer">
                     <i class="fa-solid fa-lock text-gold-400 text-xs"></i>
-                    <span id="adminBtnText"></span>
+                    <span id="adminBtnText">Admin Portal</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO BANNER -->
-    <section class="px-4 py-6 max-w-7xl mx-auto w-full">
-        <div class="relative rounded-3xl bg-gradient-to-r from-brand-card via-[#18160d] to-brand-card border border-gold-500/30 p-5 md:p-8 overflow-hidden shadow-2xl min-h-[180px] flex items-center">
-            <div class="absolute inset-y-0 right-0.5 w-full md:w-5/5 opacity-80 bg-cover bg-right bg-no-repeat pointer-events-none" style="background-image: url('nen.png');"></div>
+    <!-- HERO BANNER (Đã xóa thanh tìm kiếm, thu gọn khoảng cách padding) -->
+    <section class="px-4 py-4 md:py-6 max-w-7xl mx-auto w-full">
+        <div class="relative rounded-2xl md:rounded-3xl bg-gradient-to-r from-brand-card via-[#18160d] to-brand-card border border-gold-500/30 p-4 md:p-8 overflow-hidden shadow-2xl">
+            <div class="absolute inset-y-0 right-0.5 w-full md:w-3/5 opacity-85 bg-cover bg-right bg-no-repeat pointer-events-none" style="background-image: url('nen.png');"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-0 pointer-events-none"></div>
 
             <div class="relative z-10 max-w-xl">
-                <!-- Đã thu hẹp khoảng cách bằng cách chỉnh mb-1 -->
-                <div class="text-gold-400 text-xs font-bold mb-0.5 uppercase tracking-wider">
+                <div class="text-gold-400 text-xs font-bold mb-2 uppercase tracking-wider">
                     Telegram: @izc206
                 </div>
 
-                <h2 class="font-orbitron text-xl md:text-2xl font-black tracking-tight gold-gradient-text uppercase mb-2">
-                    ĐỊNH VỊ VÀ MOD SKIN
+                <h2 class="font-orbitron text-xl md:text-3xl font-black tracking-tight gold-gradient-text uppercase mb-2">
+                     ĐỊNH VỊ & MOD SKIN
                 </h2>
                 <p class="text-xs md:text-sm text-gray-300 font-medium leading-relaxed">
-                    Khám phá và tải xuống Định Vị Và Mod Skin đã được kiểm duyệt an toàn tuyệt đối.
+                    Khám phá và tải xuống Định Vị cùng Mod Skin đã được kiểm duyệt an toàn tuyệt đối.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- CATEGORY TABS -->
+    <!-- CATEGORY TABS (5 ô luôn nằm trên 1 hàng) -->
     <section class="px-4 max-w-7xl mx-auto w-full mb-8">
         <div class="grid grid-cols-5 gap-2 md:gap-3">
             <!-- Trang Chủ -->
-            <button onclick="switchCategory('all')" id="btn-all" class="category-btn group p-2 md:p-3 rounded-xl bg-brand-card border border-gold-400 bg-gold-500/10 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 md:h-20" title="Trang Chủ">
+            <button onclick="switchCategory('all')" id="btn-all" class="category-btn group p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-gold-400 bg-gold-500/10 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 sm:h-20" title="Trang Chủ">
                 <div class="flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-house text-xl md:text-2xl"></i>
+                    <i class="fa-solid fa-house text-base sm:text-xl"></i>
                 </div>
-                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.1 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-all">0</span>
+                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-all">0</span>
             </button>
 
             <!-- iOS -->
-            <button onclick="switchCategory('ios')" id="btn-ios" class="category-btn group p-2 md:p-3 rounded-xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 md:h-20" title="iOS">
+            <button onclick="switchCategory('ios')" id="btn-ios" class="category-btn group p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 sm:h-20" title="iOS">
                 <div class="flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-brands fa-apple text-xl md:text-2xl"></i>
+                    <i class="fa-brands fa-apple text-base sm:text-xl"></i>
                 </div>
-                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.1 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-ios">0</span>
+                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-ios">0</span>
             </button>
 
             <!-- ADR -->
-            <button onclick="switchCategory('adr')" id="btn-adr" class="category-btn group p-2 md:p-3 rounded-xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 md:h-20" title="ADR">
+            <button onclick="switchCategory('adr')" id="btn-adr" class="category-btn group p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all flex flex-col items-center justify-center relative overflow-hidden shadow-lg cursor-pointer h-16 sm:h-20" title="ADR">
                 <div class="flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-brands fa-android text-xl md:text-2xl"></i>
+                    <i class="fa-brands fa-android text-base sm:text-xl"></i>
                 </div>
-                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.1 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-adr">0</span>
+                <span class="absolute top-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-black/60 text-gold-300 border border-gold-500/20" id="count-adr">0</span>
             </button>
 
             <!-- Mod iOS -->
-            <button onclick="switchCategory('mod-ios')" id="btn-mod-ios" class="category-btn group p-2.5 md:p-3 rounded-xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all text-left relative overflow-hidden shadow-lg cursor-pointer h-16 md:h-20 flex flex-col justify-between">
+            <button onclick="switchCategory('mod-ios')" id="btn-mod-ios" class="category-btn group p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all text-left relative overflow-hidden shadow-lg cursor-pointer h-16 sm:h-20 flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
-                    <div class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400">
-                        <i class="fa-solid fa-bolt text-xs md:text-sm"></i>
+                    <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt text-xs sm:text-sm"></i>
                     </div>
-                    <span class="text-[9px] font-mono font-bold px-1.5 py-0.1 rounded-full bg-black/40 text-gold-300 border border-gold-500/20" id="count-mod-ios">0</span>
+                    <span class="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-black/40 text-gold-300 border border-gold-500/20" id="count-mod-ios">0</span>
                 </div>
                 <div>
-                    <h3 class="font-orbitron font-bold text-white text-[10px] md:text-xs truncate">Mod iOS</h3>
+                    <h3 class="font-orbitron font-bold text-white text-[10px] sm:text-xs truncate">Mod iOS</h3>
+                    <p class="text-[8px] sm:text-[10px] text-gray-400 font-medium truncate hidden sm:block">IPA Đã hack</p>
                 </div>
             </button>
 
             <!-- Mod ADR -->
-            <button onclick="switchCategory('mod-adr')" id="btn-mod-adr" class="category-btn group p-2.5 md:p-3 rounded-xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all text-left relative overflow-hidden shadow-lg cursor-pointer h-16 md:h-20 flex flex-col justify-between">
+            <button onclick="switchCategory('mod-adr')" id="btn-mod-adr" class="category-btn group p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-brand-card border border-gold-500/20 hover:border-gold-400 transition-all text-left relative overflow-hidden shadow-lg cursor-pointer h-16 sm:h-20 flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
-                    <div class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400">
-                        <i class="fa-solid fa-gamepad text-xs md:text-sm"></i>
+                    <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gamepad text-xs sm:text-sm"></i>
                     </div>
-                    <span class="text-[9px] font-mono font-bold px-1.5 py-0.1 rounded-full bg-black/40 text-gold-300 border border-gold-500/20" id="count-mod-adr">0</span>
+                    <span class="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-black/40 text-gold-300 border border-gold-500/20" id="count-mod-adr">0</span>
                 </div>
                 <div>
-                    <h3 class="font-orbitron font-bold text-white text-[10px] md:text-xs truncate">Mod ADR</h3>
+                    <h3 class="font-orbitron font-bold text-white text-[10px] sm:text-xs truncate">Mod ADR</h3>
+                    <p class="text-[8px] sm:text-[10px] text-gray-400 font-medium truncate hidden sm:block">APK Modded</p>
                 </div>
             </button>
         </div>
@@ -231,9 +227,9 @@
     <footer class="bg-black border-t border-gold-500/20 py-8 px-4 text-center mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col items-center justify-center space-y-3">
             <div class="flex items-center space-x-2 cursor-pointer" onclick="checkAdminAccess()" title="Click để mở bảng Admin">
-                <span class="font-orbitron font-bold text-sm gold-gradient-text hover:underline">IZC MODS</span>
+                <span class="font-orbitron font-bold text-sm gold-gradient-text hover:underline">IZC MODR</span>
             </div>
-            <p class="text-xs text-gray-500">Bản quyền thuộc về IZC. Cung cấp Định Vị Và Mod Skin.</p>
+            <p class="text-xs text-gray-500">Bản quyền thuộc về IZC. Cung cấp chia sẻ Định Vị và mod Skin chuyên nghiệp.</p>
         </div>
     </footer>
 
@@ -251,12 +247,12 @@
             </div>
 
             <div class="overflow-y-auto flex-grow pr-1 space-y-4">
-                <!-- Cài đặt Nhạc Nền MP3 -->
+                <!-- Tải file nhạc MP3 từ máy trực tiếp -->
                 <div class="bg-black/50 p-4 rounded-2xl border border-gold-500/20">
-                    <h4 class="font-bold text-xs text-gold-300 uppercase tracking-wider mb-2"><i class="fa-solid fa-music mr-1"></i> Cài đặt Nhạc nền MP3</h4>
+                    <h4 class="font-bold text-xs text-gold-300 uppercase tracking-wider mb-2"><i class="fa-solid fa-music mr-1"></i> Tải nhạc nền MP3 từ máy (Không giới hạn dung lượng)</h4>
                     <div class="flex items-center space-x-3">
                         <input type="file" id="bgMusicFile" accept="audio/mp3, audio/*" class="w-full px-3 py-1.5 rounded-xl bg-black border border-gold-500/30 text-white text-xs file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-black hover:file:bg-gold-400 cursor-pointer">
-                        <button type="button" onclick="saveMusicFile()" class="px-4 py-2 rounded-xl bg-gold-500 text-black font-bold text-xs hover:bg-gold-400 transition-all cursor-pointer whitespace-nowrap">Đổi Nhạc</button>
+                        <button type="button" onclick="saveMusicFile()" class="px-4 py-2.5 rounded-xl bg-gold-500 text-black font-bold text-xs hover:bg-gold-400 transition-all cursor-pointer whitespace-nowrap">Lưu Nhạc</button>
                     </div>
                 </div>
 
@@ -286,11 +282,8 @@
                                 <input type="text" id="appLink" required placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-gold-500/30 text-white text-xs focus:outline-none focus:border-gold-400">
                             </div>
                             <div>
-                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Chọn ảnh từ máy (Hoặc dán Link URL ảnh)</label>
-                                <div class="space-y-1.5">
-                                    <input type="file" id="appImageFile" accept="image/*" class="w-full px-3 py-1.5 rounded-xl bg-black border border-gold-500/30 text-white text-xs file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-black hover:file:bg-gold-400 cursor-pointer">
-                                    <input type="text" id="appImageUrl" placeholder="Hoặc dán link ảnh https://..." class="w-full px-3.5 py-2 rounded-xl bg-black border border-gold-500/30 text-white text-xs focus:outline-none focus:border-gold-400">
-                                </div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Link URL ảnh minh họa</label>
+                                <input type="text" id="appImageUrl" placeholder="https://... hoặc logo.jpg" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-gold-500/30 text-white text-xs focus:outline-none focus:border-gold-400">
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -343,39 +336,80 @@
         let isAdminLoggedIn = false;
         let draggedIndex = null;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if (splash) {
-                    splash.style.opacity = '0';
-                    setTimeout(() => splash.remove(), 700);
-                }
-            }, 1000);
+        let db = null;
+        const request = indexedDB.open("IZCGamingDB", 1);
+        
+        request.onerror = function(event) {
+            console.error("Lỗi IndexedDB:", event.target.error);
+            removeSplashScreen();
+        };
 
+        request.onupgradeneeded = function(event) {
+            let database = event.target.result;
+            if (!database.objectStoreNames.contains("musicStore")) {
+                database.createObjectStore("musicStore");
+            }
+        };
+
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            loadMusicFromDB();
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            removeSplashScreen();
             renderApps();
-            initMusic();
         });
 
-        function initMusic() {
-            const savedMusic = localStorage.getItem('izc_gaming_music');
-            const audio = document.getElementById('bgMusic');
-            if (savedMusic) {
-                audio.src = savedMusic;
+        function removeSplashScreen() {
+            const splash = document.getElementById('splash-screen');
+            if (splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 700);
             }
         }
 
         function saveMusicFile() {
+            if (!db) {
+                alert("Cơ sở dữ liệu chưa sẵn sàng, vui lòng tải lại trang!");
+                return;
+            }
             const fileInput = document.getElementById('bgMusicFile');
             if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    localStorage.setItem('izc_gaming_music', e.target.result);
-                    initMusic();
-                    alert("Đã cập nhật nhạc nền MP3 thành công!");
+                const file = fileInput.files[0];
+                const transaction = db.transaction(["musicStore"], "readwrite");
+                const store = transaction.objectStore("musicStore");
+                const putRequest = store.put(file, "bgMusicFile");
+
+                putRequest.onsuccess = function() {
+                    loadMusicFromDB();
+                    alert("Đã lưu file nhạc MP3 thành công!");
                 };
-                reader.readAsDataURL(fileInput.files[0]);
+                putRequest.onerror = function() {
+                    alert("Lỗi khi lưu file nhạc vào hệ thống.");
+                };
             } else {
                 alert("Vui lòng chọn một file nhạc MP3 từ máy tính trước!");
+            }
+        }
+
+        function loadMusicFromDB() {
+            if (!db) return;
+            try {
+                const transaction = db.transaction(["musicStore"], "readonly");
+                const store = transaction.objectStore("musicStore");
+                const getRequest = store.get("bgMusicFile");
+
+                getRequest.onsuccess = function(event) {
+                    const blob = event.target.result;
+                    if (blob) {
+                        const audioUrl = URL.createObjectURL(blob);
+                        const audio = document.getElementById('bgMusic');
+                        audio.src = audioUrl;
+                    }
+                };
+            } catch (e) {
+                console.error("Không thể tải nhạc:", e);
             }
         }
 
@@ -383,11 +417,11 @@
             const audio = document.getElementById('bgMusic');
             const icon = document.getElementById('musicIcon');
             if (!audio.src || audio.src === window.location.href) {
-                alert("Chưa có nhạc nền nào được tải lên! Hãy vào Admin để chọn file MP3.");
+                alert("Chưa có file nhạc nào! Hãy vào Admin để chọn và lưu file MP3.");
                 return;
             }
             if (audio.paused) {
-                audio.play();
+                audio.play().catch(err => alert("Trình duyệt chặn phát tự động, hãy bấm lại nút nhạc."));
                 icon.className = "fa-solid fa-volume-high text-xs animate-bounce";
             } else {
                 audio.pause();
@@ -433,10 +467,10 @@
 
             const titles = {
                 'all': 'Trang Chủ',
-                'ios': 'Ứng dụng iOS chính thức',
-                'adr': 'Trò chơi Android chính thức',
-                'mod-ios': 'Ứng dụng Mod iOS (IPA)',
-                'mod-adr': 'Trò chơi Mod Android (APK)'
+                'ios': 'ĐỊNH VỊ 3015 VÀ FILLZA',
+                'adr': 'ĐỊNH VỊ ADR',
+                'mod-ios': 'MOD SKIN 3015 VÀ FILLZA',
+                'mod-adr': 'MOD SKIN ADR'
             };
             document.getElementById('currentCategoryTitle').innerHTML = `<i class="fa-solid fa-layer-group text-gold-500"></i><span>${titles[cat]}</span>`;
             renderApps();
@@ -454,8 +488,7 @@
             });
 
             const filtered = appsData.filter(item => {
-                const matchCat = (currentCategory === 'all' || item.category === currentCategory);
-                return matchCat;
+                return (currentCategory === 'all' || item.category === currentCategory);
             });
 
             document.getElementById('itemCountDisplay').innerText = `Hiển thị ${filtered.length} mục`;
@@ -498,6 +531,10 @@
             });
         }
 
+        function filterContent() {
+            renderApps();
+        }
+
         function resetForm() {
             document.getElementById('appForm').reset();
             document.getElementById('editIndex').value = "-1";
@@ -506,8 +543,7 @@
         function handleSaveApp(e) {
             e.preventDefault();
             const editIndex = parseInt(document.getElementById('editIndex').value);
-            const fileInput = document.getElementById('appImageFile');
-            const urlInput = document.getElementById('appImageUrl').value.trim();
+            const imageUrl = document.getElementById('appImageUrl').value.trim();
             
             const name = document.getElementById('appName').value;
             const category = document.getElementById('appCategory').value;
@@ -515,37 +551,28 @@
             const badge = document.getElementById('appBadge').value;
             const version = document.getElementById('appVersion').value;
 
-            const processAndSave = (imageSrc) => {
-                const newItem = { name, category, link, image: imageSrc || 'logo.jpg', badge, version };
+            let finalImage = imageUrl !== "" ? imageUrl : "logo.jpg";
+            if (editIndex >= 0 && imageUrl === "") {
+                finalImage = appsData[editIndex].image;
+            }
 
-                if (editIndex >= 0) {
-                    appsData[editIndex] = newItem;
-                } else {
-                    appsData.unshift(newItem);
-                }
+            const newItem = { name, category, link, image: finalImage, badge, version };
 
+            if (editIndex >= 0) {
+                appsData[editIndex] = newItem;
+            } else {
+                appsData.unshift(newItem);
+            }
+
+            try {
                 localStorage.setItem('izc_gaming_apps', JSON.stringify(appsData));
                 resetForm();
                 document.getElementById('adminCatFilter').value = category;
                 switchCategory(category);
                 renderAdminList();
                 alert("Đã lưu thành công!");
-            };
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
-                    processAndSave(uploadEvent.target.result);
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else if (urlInput !== "") {
-                processAndSave(urlInput);
-            } else {
-                let fallbackImg = 'logo.jpg';
-                if (editIndex >= 0) {
-                    fallbackImg = appsData[editIndex].image;
-                }
-                processAndSave(fallbackImg);
+            } catch (err) {
+                alert("Lỗi lưu trữ: Bộ nhớ trình duyệt đã đầy!");
             }
         }
 
@@ -562,7 +589,7 @@
                 return;
             }
 
-            categoryFilteredApps.forEach(({ app, originalIndex }, localIdx) => {
+            categoryFilteredApps.forEach(({ app, originalIndex }) => {
                 const row = document.createElement('div');
                 row.className = "flex items-center justify-between p-3 rounded-xl bg-black border border-gold-500/20 cursor-move hover:border-gold-400 transition-colors";
                 row.draggable = true;
@@ -625,11 +652,7 @@
             document.getElementById('appLink').value = app.link;
             document.getElementById('appBadge').value = app.badge || '';
             document.getElementById('appVersion').value = app.version || '';
-            if (app.image.startsWith('http') || app.image.startsWith('data:')) {
-                document.getElementById('appImageUrl').value = app.image;
-            } else {
-                document.getElementById('appImageUrl').value = '';
-            }
+            document.getElementById('appImageUrl').value = app.image.startsWith('data:') ? '' : app.image;
             document.getElementById('adminCatFilter').value = app.category;
             renderAdminList();
         }
